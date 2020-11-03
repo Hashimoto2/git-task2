@@ -4,6 +4,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @book_new = Book.new
+    @book_comment = BookComment.new
   end
 
   def index
@@ -20,6 +21,7 @@ class BooksController < ApplicationController
       @books = Book.all
       render :index
     end
+    
   end
 
   def edit
