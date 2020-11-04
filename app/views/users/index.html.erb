@@ -3,6 +3,9 @@
 
     <h2>User info</h2>
     <%= render 'users/profile', user: current_user %>
+    <div class="row">
+	    <%= link_to '', edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{current_user.id}" %>
+    </div>
 
     <h2>New book</h2>
     <%= render 'books/form', book: @book %>
@@ -25,6 +28,16 @@
 		  <tr>
 			<td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %></td>
 			<td><%= user.name %></td>
+			<td>フォロー数：<%= user.follower.count %></td>
+      <td>フォロワー数：<%= user.followed.count %></td>
+      <td>
+        <% if current_user != user %>
+          <% if current_user.following?(user) %>
+            <%= link_to 'フォロー外す', user_relationships_path(user.id), method: :delete %>
+          <% else %>
+            <%= link_to 'フォローする', user_relationships_path(user.id), method: :POST %>
+          <% end %>
+        <% end %>
 			<td><%= link_to "Show", user_path(user), class: "user_#{user.id}" %></td>
 		  </tr>
 		<% end %>
