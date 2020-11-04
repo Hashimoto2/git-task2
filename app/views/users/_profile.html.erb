@@ -10,8 +10,13 @@
 		<th>introduction</th>
 		<th><%= user.introduction %></th>
 	</tr>
+	<tr>
+		<th>follows</th>
+		<th><%=link_to user.follower.count, user_followers_path(user_id: user.id)%></th>
+	</tr>
+	<tr>
+		<th>followers</th>
+		<th><%=link_to user.followed.count, user_follows_path(user_id: user.id) %></th>
+	</tr>
 </table>
 
-<div class="row">
-	<%= link_to '', edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" %>
-</div>
