@@ -69,3 +69,6 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'jp_prefecture'
 gem 'jquery-rails' 
+group :development do
+  gem "letter_opener"
+end
